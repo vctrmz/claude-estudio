@@ -57,6 +57,9 @@ link ux-discovery-interviewer JacobLinCool__ux-discovery-interviewer-skill/.agen
 link apple-design             dickwu__apple-design-skill
 link agent-ready              Owl-Listener__agent-ready
 
+# --- brag (latent-spaces/brag): vídeo de lanzamiento de un proyecto. En Opus 5.5 /brag delega en /brag-slim ---
+for s in brag brag-slim; do link "$s" "latent-spaces__brag/skills/$s"; done
+
 # --- ui-ux-pro-max v2.13 (nextlevelbuilder/ui-ux-pro-max-skill) ---
 for d in "$R"/nextlevelbuilder__ui-ux-pro-max-skill/.claude/skills/*/; do
   s="$(basename "$d")"; link "$s" "nextlevelbuilder__ui-ux-pro-max-skill/.claude/skills/$s"

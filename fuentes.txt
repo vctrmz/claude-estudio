@@ -11,4 +11,5 @@ Owl-Listener/agent-ready
 nextlevelbuilder/ui-ux-pro-max-skill
 Varnan-Tech/opendirectory
 VoltAgent/awesome-design-md
+latent-spaces/brag
 NousResearch/hermes-agent optional-skills/communication/one-three-one-rule optional-skills/dogfood/adversarial-ux-test optional-skills/productivity/decision-questionnaire optional-skills/web-development/scrollcraft skills/email/email-inbox-triage skills/productivity/weekly-review-planning skills/research/competitor-news-monitor skills/research/grounded-citations
