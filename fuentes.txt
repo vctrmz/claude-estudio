@@ -1,0 +1,14 @@
+# Repos de terceros que estudio.sh clona en ~/.claude/repos/<dueño>__<repo> si faltan.
+# Formato: dueño/repo [rutas para un clon parcial]
+msitarzewski/agency-agents
+educlopez/ui-craft
+Leonxlnx/taste-skill
+vercel-labs/agent-skills
+vercel-labs/skills
+JacobLinCool/ux-discovery-interviewer-skill
+dickwu/apple-design-skill
+Owl-Listener/agent-ready
+nextlevelbuilder/ui-ux-pro-max-skill
+Varnan-Tech/opendirectory
+VoltAgent/awesome-design-md
+NousResearch/hermes-agent optional-skills/communication/one-three-one-rule optional-skills/dogfood/adversarial-ux-test optional-skills/productivity/decision-questionnaire optional-skills/web-development/scrollcraft skills/email/email-inbox-triage skills/productivity/weekly-review-planning skills/research/competitor-news-monitor skills/research/grounded-citations
