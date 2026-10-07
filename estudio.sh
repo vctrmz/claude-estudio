@@ -57,6 +57,9 @@ link ux-discovery-interviewer JacobLinCool__ux-discovery-interviewer-skill/.agen
 link apple-design             dickwu__apple-design-skill
 link agent-ready              Owl-Listener__agent-ready
 
+# --- ADR (architecture-decision-record): registra decisiones con su porqué. Licencia CC BY-NC-SA, no copiar al repo ---
+link architecture-decision-record-skill architecture-decision-record__architecture-decision-record/skills/architecture-decision-record-skill
+
 # --- brag (latent-spaces/brag): vídeo de lanzamiento de un proyecto. En Opus 5.5 /brag delega en /brag-slim ---
 for s in brag brag-slim; do link "$s" "latent-spaces__brag/skills/$s"; done
 
