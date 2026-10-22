@@ -73,9 +73,11 @@ for d in "$R"/Varnan-Tech__opendirectory/skills/*/; do
   s="$(basename "$d")"; [[ -f "$d/SKILL.md" ]] && link "$s" "Varnan-Tech__opendirectory/skills/$s"
 done
 
-# --- Skills propias (skills/ de este repo). Van al final para que ganen si un nombre coincide ---
-for d in "$E"/skills/*/; do
-  s="$(basename "$d")"; link "$s" "vctrmz__claude-estudio/skills/$s"
+# --- Skills propias (skills/<categoría>/<skill> de este repo). Van al final para que ganen si un nombre coincide ---
+# En el repo van por categorías; en ~/.claude/skills quedan planas, con su nombre de siempre.
+for d in "$E"/skills/*/*/; do
+  s="$(basename "$d")"; c="$(basename "$(dirname "$d")")"
+  link "$s" "vctrmz__claude-estudio/skills/$c/$s"
 done
 
 # --- Agentes (msitarzewski/agency-agents): se copian, la lista está en agentes.txt ---
