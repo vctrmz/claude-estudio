@@ -2,7 +2,7 @@
 
 <!-- Generado por mapa/generar.mjs desde mapa/grafo.json. No editar a mano: edita el JSON y vuelve a generar. -->
 
-Todo lo que usa Claude en el estudio y en el portfolio, como un grafo: qué decide sobre qué, quién delega en quién y qué valida cada resultado. Versión 2026-10-22.
+Todo lo que usa Claude en el estudio y en el portfolio, como un grafo: qué decide sobre qué, quién delega en quién y qué valida cada resultado. Versión 2026-10-22b.
 
 Las fuentes de verdad mandan (flecha gruesa), las skills y agentes trabajan, y los scripts, los tests y el navegador validan antes de que algo llegue a Vercel. Las flechas de puntos son automáticas.
 
@@ -36,11 +36,11 @@ Cada caja es una capa; cada flecha suma las relaciones que van de una a otra.
 ```mermaid
 flowchart LR
   fuente["Fuentes de verdad<br>4 piezas"]
-  proyecto["Proyecto vctrmz/proyectos<br>12 piezas"]
+  proyecto["Proyecto vctrmz/proyectos<br>15 piezas"]
   estudio["Estudio global<br>21 piezas"]
   conector["Conectores y MCP<br>9 piezas"]
   anthropic["Incluidas en Claude Code<br>3 piezas"]
-  fuente ==>|manda ×9| proyecto
+  fuente ==>|manda ×10| proyecto
   fuente -->|alimenta ×1| proyecto
   estudio -->|alimenta ×2| fuente
   anthropic -->|alimenta ×1| fuente
@@ -73,6 +73,9 @@ flowchart TB
     voice_audit("voice-audit")
     agentes_impeccable{{"Agentes de impeccable (4)"}}
     hook_impeccable>"Hook de impeccable"]
+    hook_session_start>"Hook de arranque"]
+    hook_voice_audit>"Hook de voice-audit"]
+    skill_overrides>"skillOverrides"]
     tests["Tests de guarda"]
     audit_script["scripts/audit.mjs"]
     cv_build["CV en PDF"]
@@ -100,6 +103,10 @@ flowchart TB
   lab -->|alimenta| hairline_record
   hairline_record -->|alimenta| voice_audit
   magnific_mcp -->|alimenta| lab
+  hook_session_start -->|alimenta| tests
+  hook_voice_audit -.->|dispara| voice_audit
+  skill_overrides ==>|manda| impeccable
+  agents_md ==>|manda| skill_overrides
 ```
 
 ## Estudio y conectores
@@ -168,6 +175,7 @@ flowchart LR
   specs[/"Specs y planes"/]
   impeccable("impeccable")
   hook_impeccable>"Hook de impeccable"]
+  hook_voice_audit>"Hook de voice-audit"]
   voice_audit("voice-audit")
   tests["Tests de guarda"]
   agentes_impeccable{{"Agentes de impeccable (4)"}}
@@ -177,7 +185,8 @@ flowchart LR
   product_md --> specs
   specs --> impeccable
   impeccable --> hook_impeccable
-  hook_impeccable --> voice_audit
+  hook_impeccable --> hook_voice_audit
+  hook_voice_audit --> voice_audit
   voice_audit --> tests
   tests --> agentes_impeccable
   agentes_impeccable --> vercel
@@ -185,7 +194,7 @@ flowchart LR
   playwright_mcp --> audit_script
 ```
 
-**Automatizar:** SessionStart que haga npm ci en la nube; hook de voice-audit al editar lib/content.
+**Automatizar:** Hecho: npm ci al arrancar en la nube y voice-audit tras editar copy. Falta: revisión de previews con Playwright cuando la red permita *.vercel.app.
 
 ### Vídeo para LinkedIn
 
@@ -288,7 +297,7 @@ Cuando dos piezas hacen lo mismo, Claude puede elegir la que no toca. Esta es la
 
 | Tema | Piezas | Regla |
 | --- | --- | --- |
-| Diseño y crítica de UI | impeccable · ui-craft (4 + 10) · ui-ux-pro-max · apple-design · design-taste-frontend | En proyectos manda impeccable (AGENTS.md). ui-craft repite sus verbos (audit, critique, polish, clarify, harden, shape, tokens) y compite en el enrutado cuando el estudio global está cargado. Fuera del portfolio, ui-craft. |
+| Diseño y crítica de UI | impeccable · skillOverrides · ui-craft (4 + 10) · ui-ux-pro-max · apple-design · design-taste-frontend | En proyectos manda impeccable (AGENTS.md), y skillOverrides deja ui-craft, ui-ux-pro-max, design-md y apple-design solo con /nombre allí. Fuera del portfolio, ui-craft. |
 | Escritura y copy | voice-audit · Propias · decisión y escritura (6) · Vercel agent-skills | En proyectos, voice-audit (lee PRODUCT.md). Fuera, humanizer o writing-guidelines. |
 | Revisión final de diseño | Agentes de impeccable (4) · Agentes · diseño (10) | En proyectos, impeccable-finish-reviewer. design-ui-finish-gate-reviewer fuera. |
 | Vídeo | Grabador de vídeo · Propias · motion y vídeo (14) · brag / brag-slim · magnific-mcp | hairline-record: captura determinista de la web. HyperFrames: composición en HTML. brag: lanzamiento de un proyecto. Magnific: generado, nunca como prueba de un caso. |
@@ -299,14 +308,11 @@ Cuando dos piezas hacen lo mismo, Claude puede elegir la que no toca. Esta es la
 
 | # | Qué | Por qué | Con qué |
 | --- | --- | --- | --- |
-| 1 | SessionStart en proyectos que haga npm ci en la nube | Cada sesión en la nube empieza sin node_modules: tests, build y scripts fallan hasta instalar a mano. | session-start-hook |
-| 2 | skillOverrides en proyectos: ui-craft, ui-ux-pro-max y design-md como user-invocable-only | Quita del enrutado automático lo que compite con impeccable sin desinstalar nada. | update-config |
-| 3 | Hook PostToolUse de voice-audit al editar lib/content o scripts/cv | El escáner corre solo y avisa; no bloquea. | update-config |
-| 4 | Skill evaluar-repo | Es el flujo que más se repite: seis repos evaluados en una semana con los mismos pasos. | skill-creator |
-| 5 | Grabador genérico de páginas con draw(t) | El mismo método sirve para Hairline y para vídeos de estados de UI reales. | scripts/hairline-record.mjs |
-| 6 | Skill candidatura | Oferta, empresa, CV y mensaje con un solo relato y la voz de PRODUCT.md. | skill-creator + Firecrawl |
-| 7 | Tarea programada semanal | Revisión de la semana y vigilancia de empresas objetivo sin acordarse. | tareas programadas |
-| 8 | CI en este repo: node mapa/generar.mjs --check | El mapa y el catálogo no se desfasan de las carpetas. | GitHub Actions |
+| 1 | Skill evaluar-repo | Es el flujo que más se repite: seis repos evaluados en una semana con los mismos pasos. | skill-creator |
+| 2 | Grabador genérico de páginas con draw(t) | El mismo método sirve para Hairline y para vídeos de estados de UI reales. | scripts/hairline-record.mjs |
+| 3 | Skill candidatura | Oferta, empresa, CV y mensaje con un solo relato y la voz de PRODUCT.md. | skill-creator + Firecrawl |
+| 4 | Tarea programada semanal | Revisión de la semana y vigilancia de empresas objetivo sin acordarse. | tareas programadas |
+| 5 | CI en este repo: node mapa/generar.mjs --check | El mapa y el catálogo no se desfasan de las carpetas. | GitHub Actions |
 
 ## Inventario
 
@@ -329,6 +335,9 @@ Cuando dos piezas hacen lo mismo, Claude puede elegir la que no toca. Esta es la
 | voice-audit | skill | `proyectos/.claude/skills/voice-audit` | auto · /voice-audit | Copy publicable contra la voz de PRODUCT.md; scan.mjs marca P0/P1/P2 con archivo:línea. |
 | Agentes de impeccable (4) | agente | `proyectos/.claude/agents/` | delegación | finish-reviewer (revisión final), documenter (DESIGN.md), asset-producer (rásters), manual-edit-applier (ediciones en vivo). <br>*impeccable-finish-reviewer, impeccable-documenter, impeccable-asset-producer, impeccable-manual-edit-applier* |
 | Hook de impeccable | hook | `proyectos/.claude/settings.local.json` | PostToolUse Edit\|Write · Stop | Detector de diseño tras cada edición de UI y pasada profunda al cerrar el turno. |
+| Hook de arranque | hook | `proyectos/.claude/hooks/session-start.sh` | SessionStart (solo en la nube) | npm ci si faltan dependencias o no cuadran; con node_modules al día sale en menos de un segundo. |
+| Hook de voice-audit | hook | `proyectos/.claude/hooks/voice-audit.mjs` | PostToolUse Edit\|Write en lib/content y scripts/cv | Pasa el escáner al copy recién editado y devuelve los hallazgos a Claude. Avisa, no bloquea. |
+| skillOverrides | hook | `proyectos/.claude/settings.local.json` | al cargar la sesión | ui-craft y sus comandos, ui-ux-pro-max (design, design-system, ui-styling), design-md y apple-design solo con /nombre en el portfolio. |
 | Tests de guarda | script | `proyectos/**/*.test.ts · npm test` | manual · antes de push | Vigilan cifras defendibles, rayas, herramientas sin confirmar, tokens, contraste e i18n. |
 | scripts/audit.mjs | script | `proyectos/scripts/audit.mjs · npm run audit` | manual | Auditoría repetible con axe y Playwright. |
 | CV en PDF | script | `proyectos/scripts/cv/ · npm run cv` | manual | Imprime cv-es y cv-en desde HTML con la maqueta común. |

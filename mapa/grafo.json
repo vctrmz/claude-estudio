@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-22",
+  "version": "2026-10-22b",
   "capas": {
     "fuente": "Fuentes de verdad · deciden antes que cualquier skill",
     "proyecto": "Proyecto vctrmz/proyectos · .claude/ del repo del portfolio",
@@ -17,158 +17,978 @@
     "alimenta": "le da material de entrada"
   },
   "nodos": [
-    { "id": "product-md", "nombre": "PRODUCT.md", "tipo": "documento", "capa": "fuente", "donde": "proyectos/PRODUCT.md", "activa": "lectura", "que": "Para quién es la web, posicionamiento, voz, lo que no se publica y un solo relato en web, CV y LinkedIn." },
-    { "id": "agents-md", "nombre": "AGENTS.md", "tipo": "documento", "capa": "fuente", "donde": "proyectos/AGENTS.md (CLAUDE.md lo importa)", "activa": "lectura", "que": "Next.js 16 rompe convenciones; qué skill manda en cada caso (impeccable primero)." },
-    { "id": "tokens", "nombre": "Tokens", "tipo": "documento", "capa": "fuente", "donde": "proyectos/app/globals.css", "activa": "lectura", "que": "Única paleta, escala tipográfica y espaciado. test/tokens.test.ts impide hex retirados." },
-    { "id": "specs", "nombre": "Specs y planes", "tipo": "documento", "capa": "fuente", "donde": "proyectos/docs/superpowers/", "activa": "manual", "que": "Flujo spec → plan → código → revisión → tests y auditoría." },
-
-    { "id": "impeccable", "nombre": "impeccable", "tipo": "skill", "capa": "proyecto", "donde": "proyectos/.claude/skills/impeccable", "activa": "auto · /impeccable", "que": "Fuente de verdad del diseño de UI: shape, audit, critique, polish, layout, animate… v4.3.1." },
-    { "id": "design-taste-frontend", "nombre": "design-taste-frontend", "tipo": "skill", "capa": "proyecto", "donde": "proyectos/.claude/skills/design-taste-frontend", "activa": "solo /design-taste-frontend", "que": "Crítica de dirección visual de páginas públicas, con --keep palette,type. Input, no mandato." },
-    { "id": "magnific-mcp", "nombre": "magnific-mcp", "tipo": "skill", "capa": "proyecto", "donde": "proyectos/.claude/skills/magnific-mcp", "activa": "auto", "que": "Guía del MCP de Magnific (imagen, vídeo, audio, 3D). Nunca sustituye material real de un caso." },
-    { "id": "voice-audit", "nombre": "voice-audit", "tipo": "skill", "capa": "proyecto", "donde": "proyectos/.claude/skills/voice-audit", "activa": "auto · /voice-audit", "que": "Copy publicable contra la voz de PRODUCT.md; scan.mjs marca P0/P1/P2 con archivo:línea." },
-    { "id": "agentes-impeccable", "nombre": "Agentes de impeccable (4)", "tipo": "agente", "capa": "proyecto", "donde": "proyectos/.claude/agents/", "activa": "delegación", "que": "finish-reviewer (revisión final), documenter (DESIGN.md), asset-producer (rásters), manual-edit-applier (ediciones en vivo).", "miembros": ["impeccable-finish-reviewer", "impeccable-documenter", "impeccable-asset-producer", "impeccable-manual-edit-applier"] },
-    { "id": "hook-impeccable", "nombre": "Hook de impeccable", "tipo": "hook", "capa": "proyecto", "donde": "proyectos/.claude/settings.local.json", "activa": "PostToolUse Edit|Write · Stop", "que": "Detector de diseño tras cada edición de UI y pasada profunda al cerrar el turno." },
-    { "id": "tests", "nombre": "Tests de guarda", "tipo": "script", "capa": "proyecto", "donde": "proyectos/**/*.test.ts · npm test", "activa": "manual · antes de push", "que": "Vigilan cifras defendibles, rayas, herramientas sin confirmar, tokens, contraste e i18n." },
-    { "id": "audit-script", "nombre": "scripts/audit.mjs", "tipo": "script", "capa": "proyecto", "donde": "proyectos/scripts/audit.mjs · npm run audit", "activa": "manual", "que": "Auditoría repetible con axe y Playwright." },
-    { "id": "cv-build", "nombre": "CV en PDF", "tipo": "script", "capa": "proyecto", "donde": "proyectos/scripts/cv/ · npm run cv", "activa": "manual", "que": "Imprime cv-es y cv-en desde HTML con la maqueta común." },
-    { "id": "hairline-record", "nombre": "Grabador de vídeo", "tipo": "script", "capa": "proyecto", "donde": "proyectos/scripts/hairline-record.mjs", "activa": "manual", "que": "MP4 1080×1350 a 30 fps con reloj falso; la vuelta cierra en bucle. Hoy atado a la figura del lab." },
-    { "id": "lab", "nombre": "Laboratorio", "tipo": "superficie", "capa": "proyecto", "donde": "proyectos/app/[locale]/lab", "activa": "local y previews", "que": "Banco de primitivos y de la figura Hairline. 404 en producción." },
-    { "id": "vercel", "nombre": "Vercel", "tipo": "superficie", "capa": "proyecto", "donde": "victormaza.vercel.app", "activa": "push", "que": "Cada rama tiene preview; cada push a main despliega a producción." },
-
-    { "id": "ui-craft", "nombre": "ui-craft (4 + 10)", "tipo": "grupo", "capa": "estudio", "donde": "educlopez/ui-craft", "activa": "auto · /audit /critique /polish…", "que": "Base de diseño de UI fuera del portfolio: 4 skills base y 10 comandos.", "miembros": ["ui-craft", "ui-craft-minimal", "ui-craft-editorial", "ui-craft-dense-dashboard", "audit", "clarify", "critique", "finalize", "harden", "heuristic", "polish", "redesign", "shape", "tokens"] },
-    { "id": "ui-ux-pro-max", "nombre": "ui-ux-pro-max", "tipo": "grupo", "capa": "estudio", "donde": "nextlevelbuilder/ui-ux-pro-max-skill", "activa": "auto", "que": "v2.13 y 6 skills de marca, banners y slides." },
-    { "id": "taste-skill", "nombre": "taste-skill", "tipo": "grupo", "capa": "estudio", "donde": "Leonxlnx/taste-skill", "activa": "auto", "que": "Dirección visual con imágenes.", "miembros": ["brandkit", "imagegen-frontend-web"] },
-    { "id": "vercel-skills", "nombre": "Vercel agent-skills", "tipo": "grupo", "capa": "estudio", "donde": "vercel-labs/agent-skills · vercel-labs/skills", "activa": "auto", "que": "Guías web y de escritura, despliegue, y el buscador de skills.", "miembros": ["web-design-guidelines", "writing-guidelines", "deploy-to-vercel", "find-skills"] },
-    { "id": "apple-design", "nombre": "apple-design", "tipo": "skill", "capa": "estudio", "donde": "dickwu/apple-design-skill", "activa": "auto", "que": "Criterio de diseño de Apple." },
-    { "id": "agent-ready", "nombre": "agent-ready", "tipo": "skill", "capa": "estudio", "donde": "Owl-Listener/agent-ready", "activa": "auto", "que": "Preparar un sitio para que lo lean agentes." },
-    { "id": "ux-discovery-interviewer", "nombre": "ux-discovery-interviewer", "tipo": "skill", "capa": "estudio", "donde": "JacobLinCool/ux-discovery-interviewer-skill", "activa": "auto", "que": "Entrevistas de discovery guiadas." },
-    { "id": "adr", "nombre": "architecture-decision-record", "tipo": "skill", "capa": "estudio", "donde": "architecture-decision-record/architecture-decision-record", "activa": "auto", "que": "Registra decisiones con su porqué. CC BY-NC-SA: solo enlace." },
-    { "id": "brag", "nombre": "brag / brag-slim", "tipo": "grupo", "capa": "estudio", "donde": "latent-spaces/brag", "activa": "/brag", "que": "Vídeo de lanzamiento de un proyecto.", "miembros": ["brag", "brag-slim"] },
-    { "id": "opendirectory", "nombre": "opendirectory GTM (59)", "tipo": "grupo", "capa": "estudio", "donde": "Varnan-Tech/opendirectory", "activa": "auto", "que": "Marketing y crecimiento del estudio." },
-
-    { "id": "propias-diseno-ui", "nombre": "Propias · diseño UI (6)", "tipo": "grupo", "capa": "estudio", "donde": "skills/diseno-ui", "activa": "auto", "que": "Sistemas de diseño legibles por IA, marcas de referencia y microinteracciones.", "carpeta": "skills/diseno-ui", "miembros": ["design-md", "ai-component-metadata", "ai-ds-composer", "microinteractions", "design-everyday-things", "scrollcraft"] },
-    { "id": "propias-motion-video", "nombre": "Propias · motion y vídeo (14)", "tipo": "grupo", "capa": "estudio", "donde": "skills/motion-video", "activa": "auto", "que": "GSAP oficial para código de app y HyperFrames para componer vídeo en HTML.", "carpeta": "skills/motion-video", "miembros": ["gsap-core", "gsap-timeline", "gsap-scrolltrigger", "gsap-plugins", "gsap-react", "gsap-frameworks", "gsap-performance", "gsap-utils", "gsap", "hyperframes", "hyperframes-cli", "hyperframes-registry", "website-to-hyperframes", "remotion-to-hyperframes"] },
-    { "id": "propias-research-ux", "nombre": "Propias · research UX (8)", "tipo": "grupo", "capa": "estudio", "donde": "skills/research-ux", "activa": "auto", "que": "Del primer contacto con el cliente al test con usuarios.", "carpeta": "skills/research-ux", "miembros": ["mom-test", "jobs-to-be-done", "continuous-discovery", "design-sprint", "lean-ux", "user-test", "ux-lab", "adversarial-ux-test"] },
-    { "id": "propias-producto", "nombre": "Propias · producto y crecimiento (3)", "tipo": "grupo", "capa": "estudio", "donde": "skills/producto-crecimiento", "activa": "auto", "que": "Hábito, retención y persuasión ética.", "carpeta": "skills/producto-crecimiento", "miembros": ["hooked-ux", "improve-retention", "influence-psychology"] },
-    { "id": "propias-decision", "nombre": "Propias · decisión y escritura (6)", "tipo": "grupo", "capa": "estudio", "donde": "skills/decision-escritura", "activa": "auto", "que": "Decidir con opciones, citar fuentes, idear specs y escribir prompts.", "carpeta": "skills/decision-escritura", "miembros": ["one-three-one-rule", "decision-questionnaire", "grounded-citations", "spec-ideation", "prompt-master", "humanizer"] },
-    { "id": "propias-operaciones", "nombre": "Propias · operaciones (3)", "tipo": "grupo", "capa": "estudio", "donde": "skills/operaciones", "activa": "auto", "que": "Bandeja de entrada, revisión semanal y vigilancia de empresas.", "carpeta": "skills/operaciones", "miembros": ["email-inbox-triage", "weekly-review-planning", "competitor-news-monitor"] },
-
-    { "id": "agentes-diseno", "agentes": ["design/"], "nombre": "Agentes · diseño (10)", "tipo": "agente", "capa": "estudio", "donde": "agency-agents/design", "activa": "delegación", "que": "UI, UX, marca, research, finish gate, storytelling visual." },
-    { "id": "agentes-marketing", "agentes": ["marketing/"], "nombre": "Agentes · marketing (23)", "tipo": "agente", "capa": "estudio", "donde": "agency-agents/marketing", "activa": "delegación", "que": "Contenido, LinkedIn, SEO, AEO, vídeo corto, PR." },
-    { "id": "agentes-producto", "agentes": ["product/", "research/"], "nombre": "Agentes · producto y research (6)", "tipo": "agente", "capa": "estudio", "donde": "agency-agents/product · research", "activa": "delegación", "que": "PM, priorización, feedback, tendencias, síntesis de research." },
-    { "id": "agentes-proyectos", "agentes": ["project-management/"], "nombre": "Agentes · gestión de proyectos (7)", "tipo": "agente", "capa": "estudio", "donde": "agency-agents/project-management", "activa": "delegación", "que": "Seguimiento, actas, Jira, operación del estudio." },
-    { "id": "agentes-ventas", "agentes": ["sales/", "paid-media/"], "nombre": "Agentes · ventas y paid media (16)", "tipo": "agente", "capa": "estudio", "donde": "agency-agents/sales · paid-media", "activa": "delegación", "que": "Propuestas, discovery comercial, campañas. Fuera del objetivo actual del portfolio." },
-
-    { "id": "playwright-mcp", "nombre": "Playwright MCP", "tipo": "mcp", "capa": "conector", "donde": "proyectos/.mcp.json → scripts/mcp-playwright.mjs", "activa": "herramientas mcp__playwright__*", "que": "Navegar, hacer clic, leer consola y capturar sin escribir un script. @playwright/mcp 0.0.83." },
-    { "id": "figma", "nombre": "Figma", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__Figma__*", "que": "Leer y escribir diseños, Code Connect, FigJam, variables." },
-    { "id": "gmail", "nombre": "Gmail", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__Gmail__*", "que": "Buscar, redactar borradores, etiquetar." },
-    { "id": "drive", "nombre": "Google Drive", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__Google_Drive__*", "que": "Leer y crear archivos." },
-    { "id": "notion", "nombre": "Notion", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__Notion__*", "que": "Páginas, bases de datos, memoria persistente entre sesiones." },
-    { "id": "github", "nombre": "GitHub", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__github__*", "que": "PRs, issues, CI, revisiones." },
-    { "id": "claude-docs", "nombre": "Claude Docs", "tipo": "conector", "capa": "conector", "donde": "claude.ai", "activa": "herramientas mcp__Claude_Docs__*", "que": "Documentos vivos para compartir y comentar." },
-    { "id": "firecrawl", "nombre": "Firecrawl (pendiente)", "tipo": "conector", "capa": "conector", "donde": "claude.ai · por conectar", "activa": "por conectar", "que": "Webs a Markdown y rastreo de sitios. Para candidaturas." },
-    { "id": "posthog", "nombre": "PostHog (pendiente)", "tipo": "conector", "capa": "conector", "donde": "claude.ai · por conectar", "activa": "por conectar", "que": "Consultar analítica. Sin proyecto de PostHog instrumentado no tiene datos." },
-
-    { "id": "anthropic-artifacts", "nombre": "Artifacts y documentos", "tipo": "grupo", "capa": "anthropic", "donde": "Claude Code", "activa": "auto", "que": "Páginas, diagramas, dataviz y archivos de oficina.", "miembros": ["artifact-design", "artifact-diagramming", "artifact-capabilities", "dataviz", "docs", "pdf", "pptx", "docx", "xlsx"] },
-    { "id": "anthropic-ingenieria", "nombre": "Revisión y configuración", "tipo": "grupo", "capa": "anthropic", "donde": "Claude Code", "activa": "/comando", "que": "Revisar código, simplificar, seguridad, hooks y skills.", "miembros": ["code-review", "simplify", "security-review", "update-config", "session-start-hook", "skill-creator", "run"] },
-    { "id": "anthropic-producto", "nombre": "Ideación y research", "tipo": "grupo", "capa": "anthropic", "donde": "Claude Code", "activa": "auto", "que": "Problem mapping, Crazy 8's, deep research, variables de Figma, índice de código.", "miembros": ["problem-mapping", "crazy-8s", "deep-research", "figma-variables-generator", "codebase-index"] }
+    {
+      "id": "product-md",
+      "nombre": "PRODUCT.md",
+      "tipo": "documento",
+      "capa": "fuente",
+      "donde": "proyectos/PRODUCT.md",
+      "activa": "lectura",
+      "que": "Para quién es la web, posicionamiento, voz, lo que no se publica y un solo relato en web, CV y LinkedIn."
+    },
+    {
+      "id": "agents-md",
+      "nombre": "AGENTS.md",
+      "tipo": "documento",
+      "capa": "fuente",
+      "donde": "proyectos/AGENTS.md (CLAUDE.md lo importa)",
+      "activa": "lectura",
+      "que": "Next.js 16 rompe convenciones; qué skill manda en cada caso (impeccable primero)."
+    },
+    {
+      "id": "tokens",
+      "nombre": "Tokens",
+      "tipo": "documento",
+      "capa": "fuente",
+      "donde": "proyectos/app/globals.css",
+      "activa": "lectura",
+      "que": "Única paleta, escala tipográfica y espaciado. test/tokens.test.ts impide hex retirados."
+    },
+    {
+      "id": "specs",
+      "nombre": "Specs y planes",
+      "tipo": "documento",
+      "capa": "fuente",
+      "donde": "proyectos/docs/superpowers/",
+      "activa": "manual",
+      "que": "Flujo spec → plan → código → revisión → tests y auditoría."
+    },
+    {
+      "id": "impeccable",
+      "nombre": "impeccable",
+      "tipo": "skill",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/skills/impeccable",
+      "activa": "auto · /impeccable",
+      "que": "Fuente de verdad del diseño de UI: shape, audit, critique, polish, layout, animate… v4.3.1."
+    },
+    {
+      "id": "design-taste-frontend",
+      "nombre": "design-taste-frontend",
+      "tipo": "skill",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/skills/design-taste-frontend",
+      "activa": "solo /design-taste-frontend",
+      "que": "Crítica de dirección visual de páginas públicas, con --keep palette,type. Input, no mandato."
+    },
+    {
+      "id": "magnific-mcp",
+      "nombre": "magnific-mcp",
+      "tipo": "skill",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/skills/magnific-mcp",
+      "activa": "auto",
+      "que": "Guía del MCP de Magnific (imagen, vídeo, audio, 3D). Nunca sustituye material real de un caso."
+    },
+    {
+      "id": "voice-audit",
+      "nombre": "voice-audit",
+      "tipo": "skill",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/skills/voice-audit",
+      "activa": "auto · /voice-audit",
+      "que": "Copy publicable contra la voz de PRODUCT.md; scan.mjs marca P0/P1/P2 con archivo:línea."
+    },
+    {
+      "id": "agentes-impeccable",
+      "nombre": "Agentes de impeccable (4)",
+      "tipo": "agente",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/agents/",
+      "activa": "delegación",
+      "que": "finish-reviewer (revisión final), documenter (DESIGN.md), asset-producer (rásters), manual-edit-applier (ediciones en vivo).",
+      "miembros": [
+        "impeccable-finish-reviewer",
+        "impeccable-documenter",
+        "impeccable-asset-producer",
+        "impeccable-manual-edit-applier"
+      ]
+    },
+    {
+      "id": "hook-impeccable",
+      "nombre": "Hook de impeccable",
+      "tipo": "hook",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/settings.local.json",
+      "activa": "PostToolUse Edit|Write · Stop",
+      "que": "Detector de diseño tras cada edición de UI y pasada profunda al cerrar el turno."
+    },
+    {
+      "id": "hook-session-start",
+      "nombre": "Hook de arranque",
+      "tipo": "hook",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/hooks/session-start.sh",
+      "activa": "SessionStart (solo en la nube)",
+      "que": "npm ci si faltan dependencias o no cuadran; con node_modules al día sale en menos de un segundo."
+    },
+    {
+      "id": "hook-voice-audit",
+      "nombre": "Hook de voice-audit",
+      "tipo": "hook",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/hooks/voice-audit.mjs",
+      "activa": "PostToolUse Edit|Write en lib/content y scripts/cv",
+      "que": "Pasa el escáner al copy recién editado y devuelve los hallazgos a Claude. Avisa, no bloquea."
+    },
+    {
+      "id": "skill-overrides",
+      "nombre": "skillOverrides",
+      "tipo": "hook",
+      "capa": "proyecto",
+      "donde": "proyectos/.claude/settings.local.json",
+      "activa": "al cargar la sesión",
+      "que": "ui-craft y sus comandos, ui-ux-pro-max (design, design-system, ui-styling), design-md y apple-design solo con /nombre en el portfolio."
+    },
+    {
+      "id": "tests",
+      "nombre": "Tests de guarda",
+      "tipo": "script",
+      "capa": "proyecto",
+      "donde": "proyectos/**/*.test.ts · npm test",
+      "activa": "manual · antes de push",
+      "que": "Vigilan cifras defendibles, rayas, herramientas sin confirmar, tokens, contraste e i18n."
+    },
+    {
+      "id": "audit-script",
+      "nombre": "scripts/audit.mjs",
+      "tipo": "script",
+      "capa": "proyecto",
+      "donde": "proyectos/scripts/audit.mjs · npm run audit",
+      "activa": "manual",
+      "que": "Auditoría repetible con axe y Playwright."
+    },
+    {
+      "id": "cv-build",
+      "nombre": "CV en PDF",
+      "tipo": "script",
+      "capa": "proyecto",
+      "donde": "proyectos/scripts/cv/ · npm run cv",
+      "activa": "manual",
+      "que": "Imprime cv-es y cv-en desde HTML con la maqueta común."
+    },
+    {
+      "id": "hairline-record",
+      "nombre": "Grabador de vídeo",
+      "tipo": "script",
+      "capa": "proyecto",
+      "donde": "proyectos/scripts/hairline-record.mjs",
+      "activa": "manual",
+      "que": "MP4 1080×1350 a 30 fps con reloj falso; la vuelta cierra en bucle. Hoy atado a la figura del lab."
+    },
+    {
+      "id": "lab",
+      "nombre": "Laboratorio",
+      "tipo": "superficie",
+      "capa": "proyecto",
+      "donde": "proyectos/app/[locale]/lab",
+      "activa": "local y previews",
+      "que": "Banco de primitivos y de la figura Hairline. 404 en producción."
+    },
+    {
+      "id": "vercel",
+      "nombre": "Vercel",
+      "tipo": "superficie",
+      "capa": "proyecto",
+      "donde": "victormaza.vercel.app",
+      "activa": "push",
+      "que": "Cada rama tiene preview; cada push a main despliega a producción."
+    },
+    {
+      "id": "ui-craft",
+      "nombre": "ui-craft (4 + 10)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "educlopez/ui-craft",
+      "activa": "auto · /audit /critique /polish…",
+      "que": "Base de diseño de UI fuera del portfolio: 4 skills base y 10 comandos.",
+      "miembros": [
+        "ui-craft",
+        "ui-craft-minimal",
+        "ui-craft-editorial",
+        "ui-craft-dense-dashboard",
+        "audit",
+        "clarify",
+        "critique",
+        "finalize",
+        "harden",
+        "heuristic",
+        "polish",
+        "redesign",
+        "shape",
+        "tokens"
+      ]
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "nombre": "ui-ux-pro-max",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "activa": "auto",
+      "que": "v2.13 y 6 skills de marca, banners y slides."
+    },
+    {
+      "id": "taste-skill",
+      "nombre": "taste-skill",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "Leonxlnx/taste-skill",
+      "activa": "auto",
+      "que": "Dirección visual con imágenes.",
+      "miembros": [
+        "brandkit",
+        "imagegen-frontend-web"
+      ]
+    },
+    {
+      "id": "vercel-skills",
+      "nombre": "Vercel agent-skills",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "vercel-labs/agent-skills · vercel-labs/skills",
+      "activa": "auto",
+      "que": "Guías web y de escritura, despliegue, y el buscador de skills.",
+      "miembros": [
+        "web-design-guidelines",
+        "writing-guidelines",
+        "deploy-to-vercel",
+        "find-skills"
+      ]
+    },
+    {
+      "id": "apple-design",
+      "nombre": "apple-design",
+      "tipo": "skill",
+      "capa": "estudio",
+      "donde": "dickwu/apple-design-skill",
+      "activa": "auto",
+      "que": "Criterio de diseño de Apple."
+    },
+    {
+      "id": "agent-ready",
+      "nombre": "agent-ready",
+      "tipo": "skill",
+      "capa": "estudio",
+      "donde": "Owl-Listener/agent-ready",
+      "activa": "auto",
+      "que": "Preparar un sitio para que lo lean agentes."
+    },
+    {
+      "id": "ux-discovery-interviewer",
+      "nombre": "ux-discovery-interviewer",
+      "tipo": "skill",
+      "capa": "estudio",
+      "donde": "JacobLinCool/ux-discovery-interviewer-skill",
+      "activa": "auto",
+      "que": "Entrevistas de discovery guiadas."
+    },
+    {
+      "id": "adr",
+      "nombre": "architecture-decision-record",
+      "tipo": "skill",
+      "capa": "estudio",
+      "donde": "architecture-decision-record/architecture-decision-record",
+      "activa": "auto",
+      "que": "Registra decisiones con su porqué. CC BY-NC-SA: solo enlace."
+    },
+    {
+      "id": "brag",
+      "nombre": "brag / brag-slim",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "latent-spaces/brag",
+      "activa": "/brag",
+      "que": "Vídeo de lanzamiento de un proyecto.",
+      "miembros": [
+        "brag",
+        "brag-slim"
+      ]
+    },
+    {
+      "id": "opendirectory",
+      "nombre": "opendirectory GTM (59)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "Varnan-Tech/opendirectory",
+      "activa": "auto",
+      "que": "Marketing y crecimiento del estudio."
+    },
+    {
+      "id": "propias-diseno-ui",
+      "nombre": "Propias · diseño UI (6)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/diseno-ui",
+      "activa": "auto",
+      "que": "Sistemas de diseño legibles por IA, marcas de referencia y microinteracciones.",
+      "carpeta": "skills/diseno-ui",
+      "miembros": [
+        "design-md",
+        "ai-component-metadata",
+        "ai-ds-composer",
+        "microinteractions",
+        "design-everyday-things",
+        "scrollcraft"
+      ]
+    },
+    {
+      "id": "propias-motion-video",
+      "nombre": "Propias · motion y vídeo (14)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/motion-video",
+      "activa": "auto",
+      "que": "GSAP oficial para código de app y HyperFrames para componer vídeo en HTML.",
+      "carpeta": "skills/motion-video",
+      "miembros": [
+        "gsap-core",
+        "gsap-timeline",
+        "gsap-scrolltrigger",
+        "gsap-plugins",
+        "gsap-react",
+        "gsap-frameworks",
+        "gsap-performance",
+        "gsap-utils",
+        "gsap",
+        "hyperframes",
+        "hyperframes-cli",
+        "hyperframes-registry",
+        "website-to-hyperframes",
+        "remotion-to-hyperframes"
+      ]
+    },
+    {
+      "id": "propias-research-ux",
+      "nombre": "Propias · research UX (8)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/research-ux",
+      "activa": "auto",
+      "que": "Del primer contacto con el cliente al test con usuarios.",
+      "carpeta": "skills/research-ux",
+      "miembros": [
+        "mom-test",
+        "jobs-to-be-done",
+        "continuous-discovery",
+        "design-sprint",
+        "lean-ux",
+        "user-test",
+        "ux-lab",
+        "adversarial-ux-test"
+      ]
+    },
+    {
+      "id": "propias-producto",
+      "nombre": "Propias · producto y crecimiento (3)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/producto-crecimiento",
+      "activa": "auto",
+      "que": "Hábito, retención y persuasión ética.",
+      "carpeta": "skills/producto-crecimiento",
+      "miembros": [
+        "hooked-ux",
+        "improve-retention",
+        "influence-psychology"
+      ]
+    },
+    {
+      "id": "propias-decision",
+      "nombre": "Propias · decisión y escritura (6)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/decision-escritura",
+      "activa": "auto",
+      "que": "Decidir con opciones, citar fuentes, idear specs y escribir prompts.",
+      "carpeta": "skills/decision-escritura",
+      "miembros": [
+        "one-three-one-rule",
+        "decision-questionnaire",
+        "grounded-citations",
+        "spec-ideation",
+        "prompt-master",
+        "humanizer"
+      ]
+    },
+    {
+      "id": "propias-operaciones",
+      "nombre": "Propias · operaciones (3)",
+      "tipo": "grupo",
+      "capa": "estudio",
+      "donde": "skills/operaciones",
+      "activa": "auto",
+      "que": "Bandeja de entrada, revisión semanal y vigilancia de empresas.",
+      "carpeta": "skills/operaciones",
+      "miembros": [
+        "email-inbox-triage",
+        "weekly-review-planning",
+        "competitor-news-monitor"
+      ]
+    },
+    {
+      "id": "agentes-diseno",
+      "agentes": [
+        "design/"
+      ],
+      "nombre": "Agentes · diseño (10)",
+      "tipo": "agente",
+      "capa": "estudio",
+      "donde": "agency-agents/design",
+      "activa": "delegación",
+      "que": "UI, UX, marca, research, finish gate, storytelling visual."
+    },
+    {
+      "id": "agentes-marketing",
+      "agentes": [
+        "marketing/"
+      ],
+      "nombre": "Agentes · marketing (23)",
+      "tipo": "agente",
+      "capa": "estudio",
+      "donde": "agency-agents/marketing",
+      "activa": "delegación",
+      "que": "Contenido, LinkedIn, SEO, AEO, vídeo corto, PR."
+    },
+    {
+      "id": "agentes-producto",
+      "agentes": [
+        "product/",
+        "research/"
+      ],
+      "nombre": "Agentes · producto y research (6)",
+      "tipo": "agente",
+      "capa": "estudio",
+      "donde": "agency-agents/product · research",
+      "activa": "delegación",
+      "que": "PM, priorización, feedback, tendencias, síntesis de research."
+    },
+    {
+      "id": "agentes-proyectos",
+      "agentes": [
+        "project-management/"
+      ],
+      "nombre": "Agentes · gestión de proyectos (7)",
+      "tipo": "agente",
+      "capa": "estudio",
+      "donde": "agency-agents/project-management",
+      "activa": "delegación",
+      "que": "Seguimiento, actas, Jira, operación del estudio."
+    },
+    {
+      "id": "agentes-ventas",
+      "agentes": [
+        "sales/",
+        "paid-media/"
+      ],
+      "nombre": "Agentes · ventas y paid media (16)",
+      "tipo": "agente",
+      "capa": "estudio",
+      "donde": "agency-agents/sales · paid-media",
+      "activa": "delegación",
+      "que": "Propuestas, discovery comercial, campañas. Fuera del objetivo actual del portfolio."
+    },
+    {
+      "id": "playwright-mcp",
+      "nombre": "Playwright MCP",
+      "tipo": "mcp",
+      "capa": "conector",
+      "donde": "proyectos/.mcp.json → scripts/mcp-playwright.mjs",
+      "activa": "herramientas mcp__playwright__*",
+      "que": "Navegar, hacer clic, leer consola y capturar sin escribir un script. @playwright/mcp 0.0.83."
+    },
+    {
+      "id": "figma",
+      "nombre": "Figma",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__Figma__*",
+      "que": "Leer y escribir diseños, Code Connect, FigJam, variables."
+    },
+    {
+      "id": "gmail",
+      "nombre": "Gmail",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__Gmail__*",
+      "que": "Buscar, redactar borradores, etiquetar."
+    },
+    {
+      "id": "drive",
+      "nombre": "Google Drive",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__Google_Drive__*",
+      "que": "Leer y crear archivos."
+    },
+    {
+      "id": "notion",
+      "nombre": "Notion",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__Notion__*",
+      "que": "Páginas, bases de datos, memoria persistente entre sesiones."
+    },
+    {
+      "id": "github",
+      "nombre": "GitHub",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__github__*",
+      "que": "PRs, issues, CI, revisiones."
+    },
+    {
+      "id": "claude-docs",
+      "nombre": "Claude Docs",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai",
+      "activa": "herramientas mcp__Claude_Docs__*",
+      "que": "Documentos vivos para compartir y comentar."
+    },
+    {
+      "id": "firecrawl",
+      "nombre": "Firecrawl (pendiente)",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai · por conectar",
+      "activa": "por conectar",
+      "que": "Webs a Markdown y rastreo de sitios. Para candidaturas."
+    },
+    {
+      "id": "posthog",
+      "nombre": "PostHog (pendiente)",
+      "tipo": "conector",
+      "capa": "conector",
+      "donde": "claude.ai · por conectar",
+      "activa": "por conectar",
+      "que": "Consultar analítica. Sin proyecto de PostHog instrumentado no tiene datos."
+    },
+    {
+      "id": "anthropic-artifacts",
+      "nombre": "Artifacts y documentos",
+      "tipo": "grupo",
+      "capa": "anthropic",
+      "donde": "Claude Code",
+      "activa": "auto",
+      "que": "Páginas, diagramas, dataviz y archivos de oficina.",
+      "miembros": [
+        "artifact-design",
+        "artifact-diagramming",
+        "artifact-capabilities",
+        "dataviz",
+        "docs",
+        "pdf",
+        "pptx",
+        "docx",
+        "xlsx"
+      ]
+    },
+    {
+      "id": "anthropic-ingenieria",
+      "nombre": "Revisión y configuración",
+      "tipo": "grupo",
+      "capa": "anthropic",
+      "donde": "Claude Code",
+      "activa": "/comando",
+      "que": "Revisar código, simplificar, seguridad, hooks y skills.",
+      "miembros": [
+        "code-review",
+        "simplify",
+        "security-review",
+        "update-config",
+        "session-start-hook",
+        "skill-creator",
+        "run"
+      ]
+    },
+    {
+      "id": "anthropic-producto",
+      "nombre": "Ideación y research",
+      "tipo": "grupo",
+      "capa": "anthropic",
+      "donde": "Claude Code",
+      "activa": "auto",
+      "que": "Problem mapping, Crazy 8's, deep research, variables de Figma, índice de código.",
+      "miembros": [
+        "problem-mapping",
+        "crazy-8s",
+        "deep-research",
+        "figma-variables-generator",
+        "codebase-index"
+      ]
+    }
   ],
   "aristas": [
-    { "de": "product-md", "a": "impeccable", "rel": "manda" },
-    { "de": "product-md", "a": "voice-audit", "rel": "manda" },
-    { "de": "product-md", "a": "design-taste-frontend", "rel": "manda" },
-    { "de": "product-md", "a": "tests", "rel": "manda" },
-    { "de": "agents-md", "a": "impeccable", "rel": "manda" },
-    { "de": "agents-md", "a": "design-taste-frontend", "rel": "manda" },
-    { "de": "agents-md", "a": "magnific-mcp", "rel": "manda" },
-    { "de": "agents-md", "a": "voice-audit", "rel": "manda" },
-    { "de": "tokens", "a": "impeccable", "rel": "manda" },
-    { "de": "impeccable", "a": "agentes-impeccable", "rel": "delega" },
-    { "de": "hook-impeccable", "a": "impeccable", "rel": "dispara" },
-    { "de": "specs", "a": "impeccable", "rel": "alimenta" },
-    { "de": "propias-decision", "a": "specs", "rel": "alimenta" },
-    { "de": "anthropic-producto", "a": "specs", "rel": "alimenta" },
-    { "de": "propias-research-ux", "a": "specs", "rel": "alimenta" },
-    { "de": "impeccable", "a": "vercel", "rel": "produce" },
-    { "de": "voice-audit", "a": "cv-build", "rel": "valida" },
-    { "de": "voice-audit", "a": "tests", "rel": "lee" },
-    { "de": "tests", "a": "vercel", "rel": "valida" },
-    { "de": "audit-script", "a": "vercel", "rel": "valida" },
-    { "de": "playwright-mcp", "a": "vercel", "rel": "valida" },
-    { "de": "playwright-mcp", "a": "lab", "rel": "valida" },
-    { "de": "lab", "a": "hairline-record", "rel": "alimenta" },
-    { "de": "propias-motion-video", "a": "hairline-record", "rel": "alimenta" },
-    { "de": "hairline-record", "a": "voice-audit", "rel": "alimenta" },
-    { "de": "magnific-mcp", "a": "lab", "rel": "alimenta" },
-    { "de": "figma", "a": "impeccable", "rel": "alimenta" },
-    { "de": "firecrawl", "a": "cv-build", "rel": "alimenta" },
-    { "de": "propias-decision", "a": "cv-build", "rel": "alimenta" },
-    { "de": "gmail", "a": "propias-operaciones", "rel": "alimenta" },
-    { "de": "propias-operaciones", "a": "notion", "rel": "produce" },
-    { "de": "posthog", "a": "specs", "rel": "alimenta" },
-    { "de": "agentes-marketing", "a": "voice-audit", "rel": "lee" },
-    { "de": "github", "a": "vercel", "rel": "dispara" }
+    {
+      "de": "product-md",
+      "a": "impeccable",
+      "rel": "manda"
+    },
+    {
+      "de": "product-md",
+      "a": "voice-audit",
+      "rel": "manda"
+    },
+    {
+      "de": "product-md",
+      "a": "design-taste-frontend",
+      "rel": "manda"
+    },
+    {
+      "de": "product-md",
+      "a": "tests",
+      "rel": "manda"
+    },
+    {
+      "de": "agents-md",
+      "a": "impeccable",
+      "rel": "manda"
+    },
+    {
+      "de": "agents-md",
+      "a": "design-taste-frontend",
+      "rel": "manda"
+    },
+    {
+      "de": "agents-md",
+      "a": "magnific-mcp",
+      "rel": "manda"
+    },
+    {
+      "de": "agents-md",
+      "a": "voice-audit",
+      "rel": "manda"
+    },
+    {
+      "de": "tokens",
+      "a": "impeccable",
+      "rel": "manda"
+    },
+    {
+      "de": "impeccable",
+      "a": "agentes-impeccable",
+      "rel": "delega"
+    },
+    {
+      "de": "hook-impeccable",
+      "a": "impeccable",
+      "rel": "dispara"
+    },
+    {
+      "de": "specs",
+      "a": "impeccable",
+      "rel": "alimenta"
+    },
+    {
+      "de": "propias-decision",
+      "a": "specs",
+      "rel": "alimenta"
+    },
+    {
+      "de": "anthropic-producto",
+      "a": "specs",
+      "rel": "alimenta"
+    },
+    {
+      "de": "propias-research-ux",
+      "a": "specs",
+      "rel": "alimenta"
+    },
+    {
+      "de": "impeccable",
+      "a": "vercel",
+      "rel": "produce"
+    },
+    {
+      "de": "voice-audit",
+      "a": "cv-build",
+      "rel": "valida"
+    },
+    {
+      "de": "voice-audit",
+      "a": "tests",
+      "rel": "lee"
+    },
+    {
+      "de": "tests",
+      "a": "vercel",
+      "rel": "valida"
+    },
+    {
+      "de": "audit-script",
+      "a": "vercel",
+      "rel": "valida"
+    },
+    {
+      "de": "playwright-mcp",
+      "a": "vercel",
+      "rel": "valida"
+    },
+    {
+      "de": "playwright-mcp",
+      "a": "lab",
+      "rel": "valida"
+    },
+    {
+      "de": "lab",
+      "a": "hairline-record",
+      "rel": "alimenta"
+    },
+    {
+      "de": "propias-motion-video",
+      "a": "hairline-record",
+      "rel": "alimenta"
+    },
+    {
+      "de": "hairline-record",
+      "a": "voice-audit",
+      "rel": "alimenta"
+    },
+    {
+      "de": "magnific-mcp",
+      "a": "lab",
+      "rel": "alimenta"
+    },
+    {
+      "de": "figma",
+      "a": "impeccable",
+      "rel": "alimenta"
+    },
+    {
+      "de": "firecrawl",
+      "a": "cv-build",
+      "rel": "alimenta"
+    },
+    {
+      "de": "propias-decision",
+      "a": "cv-build",
+      "rel": "alimenta"
+    },
+    {
+      "de": "gmail",
+      "a": "propias-operaciones",
+      "rel": "alimenta"
+    },
+    {
+      "de": "propias-operaciones",
+      "a": "notion",
+      "rel": "produce"
+    },
+    {
+      "de": "posthog",
+      "a": "specs",
+      "rel": "alimenta"
+    },
+    {
+      "de": "agentes-marketing",
+      "a": "voice-audit",
+      "rel": "lee"
+    },
+    {
+      "de": "github",
+      "a": "vercel",
+      "rel": "dispara"
+    },
+    {
+      "de": "hook-session-start",
+      "a": "tests",
+      "rel": "alimenta"
+    },
+    {
+      "de": "hook-voice-audit",
+      "a": "voice-audit",
+      "rel": "dispara"
+    },
+    {
+      "de": "skill-overrides",
+      "a": "impeccable",
+      "rel": "manda"
+    },
+    {
+      "de": "agents-md",
+      "a": "skill-overrides",
+      "rel": "manda"
+    }
   ],
   "flujos": [
     {
       "id": "caso",
       "nombre": "Caso nuevo o cambio en un caso",
       "cuando": "Añadir o reescribir un caso, una sección de la web o un componente público.",
-      "pasos": ["product-md", "specs", "impeccable", "hook-impeccable", "voice-audit", "tests", "agentes-impeccable", "vercel", "playwright-mcp", "audit-script"],
-      "automatizar": "SessionStart que haga npm ci en la nube; hook de voice-audit al editar lib/content."
+      "pasos": [
+        "product-md",
+        "specs",
+        "impeccable",
+        "hook-impeccable",
+        "hook-voice-audit",
+        "voice-audit",
+        "tests",
+        "agentes-impeccable",
+        "vercel",
+        "playwright-mcp",
+        "audit-script"
+      ],
+      "automatizar": "Hecho: npm ci al arrancar en la nube y voice-audit tras editar copy. Falta: revisión de previews con Playwright cuando la red permita *.vercel.app."
     },
     {
       "id": "video",
       "nombre": "Vídeo para LinkedIn",
       "cuando": "Contar una decisión de un caso en 10 segundos que hagan clic hacia la web.",
-      "pasos": ["product-md", "lab", "propias-motion-video", "hairline-record", "voice-audit", "agentes-marketing"],
+      "pasos": [
+        "product-md",
+        "lab",
+        "propias-motion-video",
+        "hairline-record",
+        "voice-audit",
+        "agentes-marketing"
+      ],
       "automatizar": "Generalizar el grabador a cualquier página con draw(t) determinista (estados de UI reales, patrón verbove)."
     },
     {
       "id": "candidatura",
       "nombre": "Candidatura y networking",
       "cuando": "Una oferta Senior o Lead que encaja, o un contacto al que escribir.",
-      "pasos": ["firecrawl", "propias-decision", "product-md", "cv-build", "voice-audit", "gmail", "notion"],
+      "pasos": [
+        "firecrawl",
+        "propias-decision",
+        "product-md",
+        "cv-build",
+        "voice-audit",
+        "gmail",
+        "notion"
+      ],
       "automatizar": "Skill candidatura que encadene oferta → empresa → CV → mensaje, con el seguimiento en Notion."
     },
     {
       "id": "repo-externo",
       "nombre": "Evaluar un repo o skill externa",
       "cuando": "Alguien comparte un repo, una skill o un conector.",
-      "pasos": ["product-md", "agents-md", "propias-decision", "specs"],
+      "pasos": [
+        "product-md",
+        "agents-md",
+        "propias-decision",
+        "specs"
+      ],
       "automatizar": "Skill evaluar-repo: clon en scratchpad, licencia, contraste con PRODUCT.md y AGENTS.md, veredicto (descartar · referencia · vendorizar con UPSTREAM.md · adaptar) y alta en fuentes.txt."
     },
     {
       "id": "discovery",
       "nombre": "Discovery y research UX",
       "cuando": "Validar un problema o una idea de producto antes de diseñar.",
-      "pasos": ["propias-research-ux", "ux-discovery-interviewer", "anthropic-producto", "propias-decision", "specs"],
+      "pasos": [
+        "propias-research-ux",
+        "ux-discovery-interviewer",
+        "anthropic-producto",
+        "propias-decision",
+        "specs"
+      ],
       "automatizar": "Plantilla de síntesis en Notion o Claude Docs al cerrar cada entrevista."
     },
     {
       "id": "semana",
       "nombre": "Revisión semanal",
       "cuando": "Una vez por semana.",
-      "pasos": ["gmail", "propias-operaciones", "notion"],
+      "pasos": [
+        "gmail",
+        "propias-operaciones",
+        "notion"
+      ],
       "automatizar": "Tarea programada semanal que lance weekly-review-planning y competitor-news-monitor."
     }
   ],
   "solapes": [
-    { "nodos": ["impeccable", "ui-craft", "ui-ux-pro-max", "apple-design", "design-taste-frontend"], "tema": "Diseño y crítica de UI", "regla": "En proyectos manda impeccable (AGENTS.md). ui-craft repite sus verbos (audit, critique, polish, clarify, harden, shape, tokens) y compite en el enrutado cuando el estudio global está cargado. Fuera del portfolio, ui-craft." },
-    { "nodos": ["voice-audit", "propias-decision", "vercel-skills"], "tema": "Escritura y copy", "regla": "En proyectos, voice-audit (lee PRODUCT.md). Fuera, humanizer o writing-guidelines." },
-    { "nodos": ["agentes-impeccable", "agentes-diseno"], "tema": "Revisión final de diseño", "regla": "En proyectos, impeccable-finish-reviewer. design-ui-finish-gate-reviewer fuera." },
-    { "nodos": ["hairline-record", "propias-motion-video", "brag", "magnific-mcp"], "tema": "Vídeo", "regla": "hairline-record: captura determinista de la web. HyperFrames: composición en HTML. brag: lanzamiento de un proyecto. Magnific: generado, nunca como prueba de un caso." },
-    { "nodos": ["playwright-mcp", "audit-script"], "tema": "Navegador", "regla": "MCP para explorar y revisar a mano; audit.mjs para la auditoría repetible que se compara entre versiones." },
-    { "nodos": ["propias-diseno-ui", "impeccable"], "tema": "Marcas de referencia", "regla": "design-md copia el lenguaje de marcas ajenas: nunca en páginas públicas del portfolio, que es prueba de autoría." }
+    {
+      "nodos": [
+        "impeccable",
+        "skill-overrides",
+        "ui-craft",
+        "ui-ux-pro-max",
+        "apple-design",
+        "design-taste-frontend"
+      ],
+      "tema": "Diseño y crítica de UI",
+      "regla": "En proyectos manda impeccable (AGENTS.md), y skillOverrides deja ui-craft, ui-ux-pro-max, design-md y apple-design solo con /nombre allí. Fuera del portfolio, ui-craft."
+    },
+    {
+      "nodos": [
+        "voice-audit",
+        "propias-decision",
+        "vercel-skills"
+      ],
+      "tema": "Escritura y copy",
+      "regla": "En proyectos, voice-audit (lee PRODUCT.md). Fuera, humanizer o writing-guidelines."
+    },
+    {
+      "nodos": [
+        "agentes-impeccable",
+        "agentes-diseno"
+      ],
+      "tema": "Revisión final de diseño",
+      "regla": "En proyectos, impeccable-finish-reviewer. design-ui-finish-gate-reviewer fuera."
+    },
+    {
+      "nodos": [
+        "hairline-record",
+        "propias-motion-video",
+        "brag",
+        "magnific-mcp"
+      ],
+      "tema": "Vídeo",
+      "regla": "hairline-record: captura determinista de la web. HyperFrames: composición en HTML. brag: lanzamiento de un proyecto. Magnific: generado, nunca como prueba de un caso."
+    },
+    {
+      "nodos": [
+        "playwright-mcp",
+        "audit-script"
+      ],
+      "tema": "Navegador",
+      "regla": "MCP para explorar y revisar a mano; audit.mjs para la auditoría repetible que se compara entre versiones."
+    },
+    {
+      "nodos": [
+        "propias-diseno-ui",
+        "impeccable"
+      ],
+      "tema": "Marcas de referencia",
+      "regla": "design-md copia el lenguaje de marcas ajenas: nunca en páginas públicas del portfolio, que es prueba de autoría."
+    }
   ],
   "automatizaciones": [
-    { "prioridad": 1, "que": "SessionStart en proyectos que haga npm ci en la nube", "por": "Cada sesión en la nube empieza sin node_modules: tests, build y scripts fallan hasta instalar a mano.", "con": "session-start-hook" },
-    { "prioridad": 2, "que": "skillOverrides en proyectos: ui-craft, ui-ux-pro-max y design-md como user-invocable-only", "por": "Quita del enrutado automático lo que compite con impeccable sin desinstalar nada.", "con": "update-config" },
-    { "prioridad": 3, "que": "Hook PostToolUse de voice-audit al editar lib/content o scripts/cv", "por": "El escáner corre solo y avisa; no bloquea.", "con": "update-config" },
-    { "prioridad": 4, "que": "Skill evaluar-repo", "por": "Es el flujo que más se repite: seis repos evaluados en una semana con los mismos pasos.", "con": "skill-creator" },
-    { "prioridad": 5, "que": "Grabador genérico de páginas con draw(t)", "por": "El mismo método sirve para Hairline y para vídeos de estados de UI reales.", "con": "scripts/hairline-record.mjs" },
-    { "prioridad": 6, "que": "Skill candidatura", "por": "Oferta, empresa, CV y mensaje con un solo relato y la voz de PRODUCT.md.", "con": "skill-creator + Firecrawl" },
-    { "prioridad": 7, "que": "Tarea programada semanal", "por": "Revisión de la semana y vigilancia de empresas objetivo sin acordarse.", "con": "tareas programadas" },
-    { "prioridad": 8, "que": "CI en este repo: node mapa/generar.mjs --check", "por": "El mapa y el catálogo no se desfasan de las carpetas.", "con": "GitHub Actions" }
+    {
+      "prioridad": 1,
+      "que": "Skill evaluar-repo",
+      "por": "Es el flujo que más se repite: seis repos evaluados en una semana con los mismos pasos.",
+      "con": "skill-creator"
+    },
+    {
+      "prioridad": 2,
+      "que": "Grabador genérico de páginas con draw(t)",
+      "por": "El mismo método sirve para Hairline y para vídeos de estados de UI reales.",
+      "con": "scripts/hairline-record.mjs"
+    },
+    {
+      "prioridad": 3,
+      "que": "Skill candidatura",
+      "por": "Oferta, empresa, CV y mensaje con un solo relato y la voz de PRODUCT.md.",
+      "con": "skill-creator + Firecrawl"
+    },
+    {
+      "prioridad": 4,
+      "que": "Tarea programada semanal",
+      "por": "Revisión de la semana y vigilancia de empresas objetivo sin acordarse.",
+      "con": "tareas programadas"
+    },
+    {
+      "prioridad": 5,
+      "que": "CI en este repo: node mapa/generar.mjs --check",
+      "por": "El mapa y el catálogo no se desfasan de las carpetas.",
+      "con": "GitHub Actions"
+    }
   ]
 }
